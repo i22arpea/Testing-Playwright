@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Propiedades de Spring -->
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="spring-app"/>
+    <springProperty scope="context" name="env" source="spring.profiles.active" defaultValue="unknown"/>
+    <springProperty scope="context" name="logstashEndpoint" source="loyola.logstash.url" defaultValue="unknown"/>
+    <springProperty scope="context" name="appVersion" source="spring.application.version" defaultValue="0.0"/>
+
+    <!-- Definir carpeta base de logs con fecha -->
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_DIR" value="logs/tests/${byDay}"/>
+
+    <!-- Patrón de log para incluir ID de test, correo del usuario y tipo de log -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) [%X{testId}] [%X{logType}] [%X{userEmail}] %yellow(%logger{36}) - %msg%n"/>
+
+    <!-- Filtro global para asegurar que todas las trazas se asignen a un test Playwright -->
+    <turboFilter class="matricula.e2e.test.utils.MDCTestContextFilter" />
+
+    <!-- Appender para consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- SiftingAppender para separar logs por test -->
+    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>fileLogName</key>
+            <defaultValue>default</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${fileLogName}" class="ch.qos.logback.core.FileAppender">
+                <file>${LOG_DIR}/test-${fileLogName}.log</file>
+                <encoder>
+                    <pattern>${LOG_PATTERN}</pattern>
+                </encoder>
+                <append>false</append>
+            </appender>
+        </sift>
+    </appender>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </root>
+
+    <!-- Niveles de log específicos -->
+    <logger name="matricula.e2e" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <!-- Configurar loggers específicos para capturar logs de base de datos -->
+    <logger name="org.hibernate" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="org.springframework.transaction" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="com.zaxxer.hikari" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="matricula" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+    <logger name="es.loyola" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SIFT"/>
+    </logger>
+
+</configuration>
