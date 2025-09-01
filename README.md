@@ -191,6 +191,15 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 
 ****
 
+## 🌐 Procedures
+
+- [ResetFEAdmisiones.sql](procedures/ResetFEAdmisiones.sql)
+- [ResetFEDECA.sql](procedures/ResetFEDECA.sql)
+- [ResetFERenovacion.sql](procedures/ResetFERenovacion.sql)
+- [ResetFETFe.sql](procedures/ResetFETFe.sql)
+
+****
+
 ## ✅ Tests Implementados
 
 ### 🔐 Login
@@ -240,49 +249,50 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 
 ## 🛰️ Servicios REST (Back-end)
 
-- [EliminarInscripcionFuturosEstudiantes.java](../../../../main/java/matricula/rest/futurosestudiantes/EliminarInscripcionFuturosEstudiantes.java)
+- [EliminarInscripcionFuturosEstudiantes.java](main/java/matricula/rest/futurosestudiantes/EliminarInscripcionFuturosEstudiantes.java)
   - Extensión: `/eliminarinsfuturosestudiantes`
-- [ObtenerFuturosEstudiantesCandidatoController.java](../../../../main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesCandidatoController.java) 
+- [ObtenerFuturosEstudiantesCandidatoController.java](main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesCandidatoController.java) 
   - Extensión: `/futurosestudiantescandidato`
-- [ObtenerFuturosEstudiantesOutgoing.java](../../../../main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesOutgoing.java)
+- [ObtenerFuturosEstudiantesOutgoing.java](main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesOutgoing.java)
   - Extensión: `/futurosestudiantesoutgoing/proximocurso`
-- [ObtenerFuturosEstudiantesPiia.java](../../../../main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesPiia.java)
+- [ObtenerFuturosEstudiantesPiia.java](main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesPiia.java)
   - Extensión: `/futurosestudiantespiia` --> `/futurosestudiantespiia/colectivo`
-- [ObtenerFuturosEstudiantesRenovacionController.java](../../../../main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesRenovacionController.java)
+- [ObtenerFuturosEstudiantesRenovacionController.java](main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesRenovacionController.java)
   - Extensión: `/futurosestudiantesrenovacion`
   - Extensión colectivo: `/futurosestudiantesrenovacion/colectivo`
   - Extensión más asignaturas: `/futurosestudiantesrenovacion/masasig`
   - Extensión restriccion asignatura : `/futurosestudiantesrenovacion/asigrestacept`
   - Extensión restricción no asignatura: `/futurosestudiantesrenovacion/asigresterror`
-- [ObtenerFuturosEstudiantesTF.java](../../../../main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesTF.java)
+- [ObtenerFuturosEstudiantesTF.java](main/java/matricula/rest/futurosestudiantes/ObtenerFuturosEstudiantesTF.java)
   - Extensión TFG sin matricula: `/futurosestudiantesTF/tfg`
   - Extensión TFG con matricula: `/futurosestudiantesTF/tfgMod`
   - Extensión TFM sin matricula: `/futurosestudiantesTF/tfm`
   - Extensión TFM con matricula: `/futurosestudiantesTF/tfmMod`
-- [ResetearFuturosEstudiantes.java](../../../../main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantes.java)
+- [ResetearFuturosEstudiantes.java](main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantes.java)
   - Extensión: `/resetfuturosestudiantes`
-- [ResetearFuturosEstudiantesCandidatoController.java](../../../../main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantesCandidatoController.java)
+- [ResetearFuturosEstudiantesCandidatoController.java](main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantesCandidatoController.java)
   - Extensión: `/resetfuturosestudiantescandidato`
-- [ResetearFuturosEstudiantesTF.java](../../../../main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantesTF.java)
+- [ResetearFuturosEstudiantesTF.java](main/java/matricula/rest/futurosestudiantes/ResetearFuturosEstudiantesTF.java)
   - Extensión: `/resetfuturosestudiantestf`
 
 ****
 
 ## ☕ Beans y DTOs
 
-- [FuturosEstudiantesBean.java](../../../../main/java/matricula/ejb/matricula/FuturosEstudiantesBean.java) - Este EJB contiene la lógica de negocio relacionada con los futuros estudiantes.
-- [FuturosEstudiantesOutgoing.java](../../../../main/java/matricula/ejb/matricula/dto/FuturosEstudiantesOutgoing.java) - Este DTO representa a un futuro estudiante de tipo Outgoing para proximo curso.
-- [FuturosEstudiantesAdmisiones.java](../../../../main/java/matricula/ejb/matricula/dto/FuturosEstudiantesAdmisiones.java) - Este DTO representa a un futuro estudiante de admisiones.
-- [FuturosEstudiantesAsignatura.java](../../../../main/java/matricula/ejb/matricula/dto/FuturosEstudiantesAsignatura.java) - Este DTO representa a un futuro estudiante con una asignatura de restricción.
-- [FuturosEstudiantes.java](../../../../main/java/matricula/ejb/matricula/dto/FuturosEstudiantes.java) - Este DTO representa a un futuro estudiante.
+- [FuturosEstudiantesBean.java](main/java/matricula/ejb/matricula/FuturosEstudiantesBean.java) - Este EJB contiene la lógica de negocio relacionada con los futuros estudiantes.
+- [FuturosEstudiantesOutgoing.java](main/java/matricula/ejb/matricula/dto/FuturosEstudiantesOutgoing.java) - Este DTO representa a un futuro estudiante de tipo Outgoing para proximo curso.
+- [FuturosEstudiantesAdmisiones.java](main/java/matricula/ejb/matricula/dto/FuturosEstudiantesAdmisiones.java) - Este DTO representa a un futuro estudiante de admisiones.
+- [FuturosEstudiantesAsignatura.java](main/java/matricula/ejb/matricula/dto/FuturosEstudiantesAsignatura.java) - Este DTO representa a un futuro estudiante con una asignatura de restricción.
+- [FuturosEstudiantes.java](main/java/matricula/ejb/matricula/dto/FuturosEstudiantes.java) - Este DTO representa a un futuro estudiante.
 
 ****
 
 ## 🧩 Facades
 
-- [FuturosEstudiantesAdmisionesFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesAdmisionesFacade.java)
-- [FuturosEstudiantesOutgoingFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesOutgoingFacade.java)
-- [FuturosEstudiantesPiiaFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesPiiaFacade.java)
-- [FuturosEstudiantesRenovacionFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesRenovacionFacade.java)
-- [FuturosEstudiantesTFFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesTFFacade.java)
+- [FuturosEstudiantesAdmisionesFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesAdmisionesFacade.java)
+- [FuturosEstudiantesOutgoingFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesOutgoingFacade.java)
+- [FuturosEstudiantesPiiaFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesPiiaFacade.java)
+- [FuturosEstudiantesRenovacionFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesRenovacionFacade.java)
+- [FuturosEstudiantesTFFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesTFFacade.java)
+
 
