@@ -106,18 +106,18 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 
 ### 🔐 Login
 
-- [IndexPage.java](page/IndexPage.java)
+- [IndexPage.java](test/java/matricula/e2e/page/IndexPage.java)
 
 ### 🏠 Home y Procesos
 
-- [ProcesosPage.java](page/secure/ProcesosPage.java)
-- [HomePage.java](page/secure/HomePage.java)
+- [ProcesosPage.java](test/java/matricula/e2e/page/secure/ProcesosPage.java)
+- [HomePage.java]test/java/matricula/e2e/(page/secure/HomePage.java)
 
 
 ### 📝 Flujo de Matrícula
 
 #### 🧍 Datos Personales
-- [DatosPersonalesPage.java](page/secure/matricula/proceso/pestana/DatosPersonalesPage.java)
+- [DatosPersonalesPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pestana/DatosPersonalesPage.java)
   - `rellenarPrimeraSeccion()` – Rellena la primera sección de datos personales.
   - `rellenarSegundaSeccion()` – Rellena la segunda sección de datos personales.
   - `rellearSegundaSeccionPiia()` – Rellena la segunda sección de datos personales para PIIA.
@@ -125,13 +125,13 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
   - `rellenarCuartaSeccion()` – Rellena la cuarta sección de datos personales.
 
 #### 📊 Datos Estadísticos
-- [DatosEstadisticosPage.java](page/secure/matricula/proceso/pestana/DatosEstadisticosPage.java)
+- [DatosEstadisticosPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pestana/DatosEstadisticosPage.java)
   - `rellenarDatosEstadisticos()` - Rellenar los datos estadísticos del usuario.
 
 
 #### 🔐 RGPD y Académicos
-- [DatosRGPDPage.java](page/secure/matricula/proceso/pestana/DatosRGPDPage.java)
-- [DatosAcademicosPage.java](page/secure/matricula/proceso/pestana/DatosAcademicosPage.java)
+- [DatosRGPDPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pestana/DatosRGPDPage.java)
+- [DatosAcademicosPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pestana/DatosAcademicosPage.java)
   - `rellenarAsignaturas()` – Rellena las asignaturas del usuario.
   - `rellenarMasAsignaturas()` – Rellena mas asignaturas de las que puede el usuario.
   - `rellenarAsigyGrupos()` – Rellena menos asignaturas y grupos del usuario.
@@ -140,17 +140,17 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
   - `aceptacionSolapes()` – Verifica la aceptación de solapes de asignaturas.
 
 #### 💰 Económicos y Confirmación
-- [DatosEconomicosPage.java](page/secure/matricula/proceso/pestana/DatosEconomicosPage.java)
+- [DatosEconomicosPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pestana/DatosEconomicosPage.java)
   - `rellenarPrimeraSeccion()` – Rellena la primera sección de datos económicos.
   - `rellenarSegundaSeccion()` – Rellena la segunda sección de datos económicos.
 - [DatosConfirmacionPage.java](page/secure/matricula/proceso/pestana/DatosConfirmacionPage.java)
   - `rellenarClausulas()` – Rellena las cláusulas de confirmación.
 
 #### 💳 Pago y Finalización
-- [RecepcionInfoPagoPage.java](page/ext/tpv/RecepcionInfoPagoPage.java)
-- [FormulatioTPVPage.java](page/secure/matricula/proceso/pago/FormularioTPVPage.java)
+- [RecepcionInfoPagoPage.java](test/java/matricula/e2e/page/ext/tpv/RecepcionInfoPagoPage.java)
+- [FormulatioTPVPage.java](test/java/matricula/e2e/page/secure/matricula/proceso/pago/FormularioTPVPage.java)
   - `rellenarDatosInfoPago()` – Rellena los datos de pago en el formulario TPV.
-- [CardPage.java](page/ext/hosted_payment/CardPage.java)
+- [CardPage.java](test/java/matricula/e2e/page/ext/hosted_payment/CardPage.java)
   - `rellenarDatosCard()` – Rellena los datos de la tarjeta en la página de pago.
   - `rellenarDatosCardFalsa()` – Rellena los datos de la tarjeta con un error intencionado.
 - [DatosMatriculaFinalizadaPage.java](page/secure/matricula/proceso/pestana/DatosMatriculaFinalizadaPage.java)
@@ -160,59 +160,59 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 
 ## ♿ Accesibilidad
 
-- [axe.min.js](resources/axe.min.js)
-- [AccessibilityExcelExporter.java](test/utils/accesibilidad/AccessibilityExcelExporter.java) – Extractor de problemas de accesibilidad a Excel.
-- [HighlightAccessibilityIssues.java](test/utils/accesibilidad/HighlightAccessibilityIssues.java) - Resalta los problemas de accesibilidad en la página.
+- [axe.min.js](test/java/matricula/e2e/resources/axe.min.js)
+- [AccessibilityExcelExporter.java](test/java/matricula/e2e/test/utils/accesibilidad/AccessibilityExcelExporter.java) – Extractor de problemas de accesibilidad a Excel.
+- [HighlightAccessibilityIssues.java](test/java/matricula/e2e/test/utils/accesibilidad/HighlightAccessibilityIssues.java) - Resalta los problemas de accesibilidad en la página.
 
 ## 📈 Reportes y Resultados
 
-- [ExtraccionExcel.java](test/utils/reporteExcel/ExtraccionExcel.java) - Extracción de datos de pruebas a un archivo Excel.
-- [TestResult.java](test/utils/reporteExcel/TestResult.java) - Clase que representa un resultado de prueba.
+- [ExtraccionExcel.java](test/java/matricula/e2e/test/utils/reporteExcel/ExtraccionExcel.java) - Extracción de datos de pruebas a un archivo Excel.
+- [TestResult.java](test/java/matricula/e2e/test/utils/reporteExcel/TestResult.java) - Clase que representa un resultado de prueba.
 
 📁 Carpetas:
-- [`reports/accesibilidad`](reports/accesibilidad)
-- [`reports/results`](reports/results)
-- [`reports/videos`](reports/videos)
+- [`reports/accesibilidad`](test/java/matricula/e2e/reports/accesibilidad)
+- [`reports/results`](test/java/matricula/e2e/reports/results)
+- [`reports/videos`](test/java/matricula/e2e/reports/videos)
 
 ****
 
 ## 🌐 Servicios REST (Tests)
 
-- [ObtenerUsuarios.java](test/utils/servicioRest/ObtenerUsuarios.java)
+- [ObtenerUsuarios.java](test/java/matricula/e2e/test/utils/servicioRest/ObtenerUsuarios.java)
   - `obtenerFuturosEstudiantes()` – Obtiene usuarios de futuros estudiantes.
   - `obtenerFuturosEstudiantesAsignatura()` – Obtiene usuarios con asignatura restricción.
   - `obtenerUsuariosAdmisiones()` – Obtiene usuarios de admisiones.
-- [ResetearUsuarios.java](test/utils/servicioRest/ResetearUsuarios.java)
+- [ResetearUsuarios.java](test/java/matricula/e2e/test/utils/servicioRest/ResetearUsuarios.java)
   - `eliminarUsuariosRenovacion()` – Elimina los usuarios de renovación.
   - `resetearUsuariosFE()` – Resetea los usuarios de futuros estudiantes.
   - `resetearUsuariosAdmisiones()` – Resetea los usuarios de admisiones.
   - `resetearUsuariosTF()` – Resetea los usuarios de TFG y TFM.
-- [TestProperties.java](test/utils/servicioRest/TestProperties.java)
+- [TestProperties.java](test/java/matricula/e2e/test/utils/servicioRest/TestProperties.java)
 
 ****
 
 ## ✅ Tests Implementados
 
 ### 🔐 Login
-- [LoginTest.java](test/LoginTest.java)
+- [LoginTest.java](test/java/matricula/e2e/test/LoginTest.java)
   - `loginExito()` – Test de inicio de sesión con usuario y contraseña.
   - `loginFalloIdentificador()` – Test de inicio de sesión con error de usuario o contraseña.
   - `loginFalloPassword()` – Test de inicio de sesión con error de contraseña.
   - `loginIdentificadorVacio()` – Test de inicio de sesión con error de captcha.
 
 ### 🎓 Inscripción por tipo de usuario
-- [ProcesoInscripcionNuevoIngresoTest.java](test/ProcesoInscripcionNuevoIngresoTest.java)
+- [ProcesoInscripcionNuevoIngresoTest.java](test/java/matricula/e2e/test/ProcesoInscripcionNuevoIngresoTest.java)
   - `procesoInscripcionCompletoTest()` – Proceso de inscripción completo para nuevo ingreso.
-- [ProcesoInscripcionNuevoIngresoMasterTest.java](test/ProcesoInscripcionNuevoIngresoMasterTest.java)
+- [ProcesoInscripcionNuevoIngresoMasterTest.java](test/java/matricula/e2e/test/ProcesoInscripcionNuevoIngresoMasterTest.java)
   - `procesoInscripcionCompletoTest()` – Proceso de inscripción completo para nuevo ingreso con máster.
-- [ProcesoInscripcionDECATest.java](test/ProcesoInscripcionDECATest.java)
+- [ProcesoInscripcionDECATest.java](test/java/matricula/e2e/test/ProcesoInscripcionDECATest.java)
   - `procesoInscripcionCompletoTestPagoUnico()` – Proceso de inscripción completo para usuarios DECA.
   - `procesoInscripcionCompletoTestPagoDoble()` – Proceso de inscripción completo para usuarios DECA con pago doble.
-- [ProcesoInscripcionOutgoingTest.java](test/ProcesoInscripcionOutgoingTest.java)
+- [ProcesoInscripcionOutgoingTest.java](test/java/matricula/e2e/test/ProcesoInscripcionOutgoingTest.java)
   - `procesoInscripcionCompletoTest()` – Proceso de inscripción completo para usuarios Outgoing.
-- [ProcesoInscripcionPiiaTest.java](test/ProcesoInscripcionPiiaTest.java)
+- [ProcesoInscripcionPiiaTest.java](test/java/matricula/e2e/test/ProcesoInscripcionPiiaTest.java)
   - `procesoInscripcionCompletoTest()` – Proceso de inscripción completo para usuarios PIIA.
-- [ProcesoInscripcionRenovacionTest.java](test/ProcesoInscripcionRenovacionTest.java)
+- [ProcesoInscripcionRenovacionTest.java](test/java/matricula/e2e/test/ProcesoInscripcionRenovacionTest.java)
   - `procesoInscripcionCompletoTest()` – Proceso de inscripción completo para usuarios en renovación.
   - `procesoMasAsignaturasTest()` – Proceso de verificación de inscripción con más asignaturas para usuarios en renovación.
   - `procesoMenosAsignaturasTest()` – Proceso de verificación de inscripción con menos asignaturas para usuarios en renovación.
@@ -222,10 +222,10 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
   - `procesoRequisitoAsignaturaTestError()` – Proceso de verificación de requisitos de asignaturas para usuarios en renovación con error.
   - `procesoModificacionMatriculaTest()` – Proceso de modificación de matrícula para usuarios en renovación.
   - `procesoCoincidenciaExamenTest()` – Test para verificar el error a la hora de coincidir 2 asignaturas en la fecha de examen.
-- [ProcesoInscripcionSoloTFGTest.java](test/ProcesoInscripcionSoloTFGTest.java)
+- [ProcesoInscripcionSoloTFGTest.java](test/java/matricula/e2e/test/ProcesoInscripcionSoloTFGTest.java)
   - `procesoInscripcionCompletoTestSinMatricula()` – Proceso de inscripción completo para usuarios que solo matriculan TFG.
   - `procesoInscripcionCompletoTestConMatricula()` – Proceso de inscripción completo para usuarios que matriculan TFG teniendo una matricula anterior.
-- [ProcesoInscripcionSoloTFMTest.java](test/ProcesoInscripcionSoloTFMTest.java)
+- [ProcesoInscripcionSoloTFMTest.java](test/java/matricula/e2e/test/ProcesoInscripcionSoloTFMTest.java)
   - `procesoInscripcionCompletoTestSinMatricula()` – Proceso de inscripción completo para usuarios que solo matriculan TFM.
   - `procesoInscripcionCompletoTestConMatricula()` – Proceso de inscripción completo para usuarios que matriculan TFM teniendo una matricula anterior.
 
@@ -285,3 +285,4 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 - [FuturosEstudiantesPiiaFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesPiiaFacade.java)
 - [FuturosEstudiantesRenovacionFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesRenovacionFacade.java)
 - [FuturosEstudiantesTFFacade.java](../../../../main/java/matricula/dao/mat/FuturosEstudiantesTFFacade.java)
+
