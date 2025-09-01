@@ -1,6 +1,7 @@
 package matricula.dao.mat;
 
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import matricula.ejb.matricula.dto.FuturosEstudiantes;
 
 import model.acad.estudios.TitulacionTipo;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Log
+@Slf4j
 @Service
 public class FuturosEstudiantesTFFacade {
 
@@ -81,13 +82,15 @@ public class FuturosEstudiantesTFFacade {
                             root.get(ExpedientesCurso_.cursoCerrado),
                             root.get(ExpedientesCurso_.egresado),
                             root.get(ExpedientesCurso_.creditosPendientes),
-                            join9.get(Candidato_.correoElectronico)
+                            join9.get(Candidato_.correoElectronico),
+                            join4.get(Alumno_.uid)
                     ));
 
-            log.info(getEntityManager().createQuery(queryDefinition).getResultList().toString());
+            log.info("listado de resultados: "+getEntityManager().createQuery(queryDefinition).getResultList().toString());
             return this.getEntityManager().createQuery(queryDefinition).getResultList();
         } catch (Exception ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            log.info("eerror: "+ex.getMessage());
 
         }
         return listaFuturosEstudiantes;
@@ -138,7 +141,8 @@ public class FuturosEstudiantesTFFacade {
                             root.get(ExpedientesCurso_.cursoCerrado),
                             root.get(ExpedientesCurso_.egresado),
                             root.get(ExpedientesCurso_.creditosPendientes),
-                            join9.get(Candidato_.correoElectronico)
+                            join9.get(Candidato_.correoElectronico),
+                            join4.get(Alumno_.uid)
                     ));
 
             log.info(getEntityManager().createQuery(queryDefinition).getResultList().toString());
