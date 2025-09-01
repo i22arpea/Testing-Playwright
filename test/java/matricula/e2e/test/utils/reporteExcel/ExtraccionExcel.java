@@ -5,15 +5,12 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.microsoft.playwright.Page;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,16 +31,9 @@ public class ExtraccionExcel {
             boolean existingFile = file.exists();
 
             if (existingFile) {
-                try {
-                    // Si el archivo existe pero está corrupto, crear uno nuevo
-                    try (FileInputStream fis = new FileInputStream(file)) {
-                        workbook = WorkbookFactory.create(fis);
-                    }
-                    log.info("Archivo Excel existente abierto: {}", fileName);
-                } catch (Exception e) {
-                    log.warn("No se pudo abrir el archivo existente, creando nuevo: {}", e.getMessage());
-                    workbook = new XSSFWorkbook();
-                }
+                file.delete(); // Elimina el archivo anterior para empezar desde cero
+                workbook = new XSSFWorkbook();
+                log.info("Archivo Excel eliminado y nuevo workbook creado: {}", fileName);
             } else {
                 workbook = new XSSFWorkbook();
             }
@@ -99,18 +89,6 @@ public class ExtraccionExcel {
             File outFile = new File(fileName);
             if (!outFile.getParentFile().exists()) {
                 outFile.getParentFile().mkdirs();
-            }
-
-            // Si el archivo existente da problemas, intentar eliminarlo primero
-            if (existingFile) {
-                try {
-                    File backupFile = new File(fileName + ".bak");
-                    if (file.renameTo(backupFile)) {
-                        log.info("Archivo existente renombrado a: {}", backupFile.getAbsolutePath());
-                    }
-                } catch (Exception e) {
-                    log.warn("No se pudo renombrar el archivo existente: {}", e.getMessage());
-                }
             }
 
             // Guardar el archivo nuevo

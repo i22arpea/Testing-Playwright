@@ -231,14 +231,14 @@ public class DatosEstadisticosPage {
 
 
                 try {
-                    page.waitForTimeout(500);
-                    if(getSelectEstudiosAcceso().locator("option").count() == 1){
+                    page.waitForTimeout(1000);
+                    int opciones = getSelectEstudiosAcceso().locator("option").count() - 1;
+                    if(opciones <= 1){
                         getSelectEstudiosAcceso().selectOption(new SelectOption().setIndex(1));
                     }else {
                         getSelectEstudiosAcceso().selectOption(new SelectOption().setIndex(
                                 random.nextInt(getSelectEstudiosAcceso().locator("option").count() - 1)
                                         + 1));
-                        log.info(getSelectEstudiosAcceso().locator("option").textContent());
                     }
 
                 } catch (Exception e) {

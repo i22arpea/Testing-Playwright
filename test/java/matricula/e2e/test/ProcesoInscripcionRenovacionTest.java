@@ -238,7 +238,7 @@ public class ProcesoInscripcionRenovacionTest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/Renovacion_aceptacion")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -291,12 +291,12 @@ public class ProcesoInscripcionRenovacionTest {
         try {
             contador++;
 
-            log.info(estudiante.getUid());
+            log.info("uid del estudiante: "+estudiante.getUid());
 
             //!RESETEO DE USUARIO
 
             if (props.isResetearUsuario()) {
-                boolean reseteoExitoso = resetearUsuarios.eliminarUsuariosRenovacion(estudiante.getIdAlumno(), estudiante.getIdInscripcion(), estudiante.getCursoAcad(), request);
+                boolean reseteoExitoso = resetearUsuarios.resetearUsuariosFE(estudiante.getIdAlumno(), estudiante.getIdInscripcion(), estudiante.getCursoAcad(), request);
                 assertTrue(reseteoExitoso, "El reseteo del usuario falló.");
 
                 loginPage.getPage().waitForTimeout(1000);
@@ -312,6 +312,8 @@ public class ProcesoInscripcionRenovacionTest {
 
             //*Espera a que termine de cargar la página
             homePage.getPage().waitForLoadState(LoadState.NETWORKIDLE);
+
+            homePage.getPage().waitForTimeout(1000);
 
             //*Presiona el botón de matriculación
             homePage.getBotonMatricularme().click();
@@ -522,23 +524,10 @@ public class ProcesoInscripcionRenovacionTest {
             if (confirmacionDatosPage.getBotonCondicionesLSOL().isVisible()) {
                 confirmacionDatosPage.getBotonCondicionesLSOL().click();
             } else {
-
-                //*Pulsa en el botón de condiciones No DECA
-                if(confirmacionDatosPage.getBotonCondicionesNoDECA().isVisible()) {
-                    confirmacionDatosPage.getBotonCondicionesNoDECA().click();
-                }else if(confirmacionDatosPage.getBotonCondicionesDECA().isVisible()){
-                    confirmacionDatosPage.getBotonCondicionesDECA().click();
-                }
-
-                //?Realiza el test de accesibilidad en la página de confirmaciónDatos
-                try {
-                    testAccessibility(page,"Confirmacion_Datos_Condiciones_DECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
+                confirmacionDatosPage.getBotonCondiciones().click();
 
                 //*Pulsa en el botón de aceptar la clausula
-                confirmacionDatosPage.getBotonAceptarClausulas().click();
+                confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
                 //?Realiza el test de accesibilidad en la página de confirmaciónDatos
                 try {
@@ -550,7 +539,7 @@ public class ProcesoInscripcionRenovacionTest {
             }
 
             //*Pulsa en el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //*Pulsa en el botón de confirmar
             confirmacionDatosPage.getBotonConfirmar().click();
@@ -1966,22 +1955,11 @@ public class ProcesoInscripcionRenovacionTest {
                 confirmacionDatosPage.getBotonCondicionesLSOL().click();
             } else {
 
-                //*Pulsa en el botón de condiciones No DECA
-                if(confirmacionDatosPage.getBotonCondicionesNoDECA().isVisible()) {
-                    confirmacionDatosPage.getBotonCondicionesNoDECA().click();
-                }else if(confirmacionDatosPage.getBotonCondicionesDECA().isVisible()){
-                    confirmacionDatosPage.getBotonCondicionesDECA().click();
-                }
-
-                //?Realiza el test de accesibilidad en la página de confirmaciónDatos
-                try {
-                    testAccessibility(page,"Confirmacion_Datos_Condiciones_DECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
+                //*Pulsa en el botón de condiciones
+                confirmacionDatosPage.getBotonCondiciones().click();
 
                 //*Pulsa en el botón de aceptar la clausula
-                confirmacionDatosPage.getBotonAceptarClausulas().click();
+                confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
                 //?Realiza el test de accesibilidad en la página de confirmaciónDatos
                 try {
@@ -1993,7 +1971,7 @@ public class ProcesoInscripcionRenovacionTest {
             }
 
             //*Pulsa en el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //*Pulsa en el botón de confirmar
             confirmacionDatosPage.getBotonConfirmar().click();
@@ -2248,6 +2226,8 @@ public class ProcesoInscripcionRenovacionTest {
 
             //*Espera a que termine de cargar la página
             homePage.getPage().waitForLoadState(LoadState.NETWORKIDLE);
+
+            homePage.getPage().waitForTimeout(1000);
 
             //*Presiona el botón de matriculación
             homePage.getBotonMatricularme().click();
@@ -2862,8 +2842,6 @@ public class ProcesoInscripcionRenovacionTest {
 
             //*Espera a que termine de cargar la página
             homePage.getPage().waitForLoadState(LoadState.NETWORKIDLE);
-
-            homePage.getPage().pause();
 
             //*Presiona el botón de matriculación
             homePage.getBotonModificarMatricula().click();

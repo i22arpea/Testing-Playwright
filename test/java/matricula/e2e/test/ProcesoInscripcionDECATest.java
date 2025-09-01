@@ -208,7 +208,7 @@ public class ProcesoInscripcionDECATest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/DECA_pagounico")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -464,7 +464,7 @@ public class ProcesoInscripcionDECATest {
                 }
 
                 //*Presiona el botón ded condiciones DECA
-                confirmacionDatosPage.getBotonCondicionesDECA().click();
+                confirmacionDatosPage.getBotonCondiciones().click();
 
                 //?Realiza el test de accesibilidad en la página de confirmaciónDatos
                 try {
@@ -474,7 +474,7 @@ public class ProcesoInscripcionDECATest {
                 }
 
                 //*Presiona el botón de aceptar la clausula
-                confirmacionDatosPage.getBotonAceptarCondicionesDECA().click();
+                confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
                 //?Realiza el test de accesibilidad en la página de confirmaciónDatos
                 try {
@@ -484,7 +484,7 @@ public class ProcesoInscripcionDECATest {
                 }
 
                 //*Presiona el botón de continuar de página
-                confirmacionDatosPage.getBotonConfirmarDatos().click();
+                confirmacionDatosPage.getBotonGuardarContinuar().click();
 
                 //?Realiza el test de accesibilidad en la página de confirmaciónDatos
                 try {
@@ -730,7 +730,7 @@ public class ProcesoInscripcionDECATest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/DECA_pagodoble")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -980,8 +980,8 @@ public class ProcesoInscripcionDECATest {
                 log.warn(e.getMessage());
             }
 
-            //*Presiona el botón ded condiciones DECA
-            confirmacionDatosPage.getBotonCondicionesDECA().click();
+            //*Presiona el botón de condiciones
+            confirmacionDatosPage.getBotonCondiciones().click();
 
             //?Realiza el test de accesibilidad en la página de confirmaciónDatos
             try {
@@ -991,7 +991,7 @@ public class ProcesoInscripcionDECATest {
             }
 
             //*Presiona el botón de aceptar la clausula
-            confirmacionDatosPage.getBotonAceptarCondicionesDECA().click();
+            confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
             //?Realiza el test de accesibilidad en la página de confirmaciónDatos
             try {
@@ -1001,7 +1001,7 @@ public class ProcesoInscripcionDECATest {
             }
 
             //*Presiona el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //?Realiza el test de accesibilidad en la página de confirmaciónDatos
             try {
@@ -1370,7 +1370,7 @@ public class ProcesoInscripcionDECATest {
 
 
             // Antes de guardar el HTML en un archivo
-            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/";
+            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/DECA/";
             Files.createDirectories(Path.of(outputDir)); // Crea la ruta si no existe
 
             // Guarda el HTML en un archivo
@@ -1381,7 +1381,7 @@ public class ProcesoInscripcionDECATest {
             //Exportar resultados a excel
             new AccessibilityExcelExporter().exportViolationsToExcel(
                     "src/test/java/matricula/e2e/reports/violations.json",
-                    "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
+                    "src/test/java/matricula/e2e/reports/accesibilidad/DECA/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
                     "src/test/java/matricula/e2e/reports/screenshots/" + nombrePagina + "_highlighted.png"
             );
 

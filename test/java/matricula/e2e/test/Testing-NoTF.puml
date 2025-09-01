@@ -1,0 +1,33 @@
+@startuml
+start
+:Iniciar sesión en la plataforma;
+if (¿Usuario de Admisión?) then (Sí)
+  :Confirmar inscripción;
+  :Iniciar proceso de matrícula;
+else (No)
+  :Iniciar proceso de matrícula;
+endif
+:Ingresar Datos Personales;
+if (¿Colectivo Piia?) then (Sí)
+  :Rellenar sección adicional Piia;
+endif
+if (¿Nuevo ingreso?) then (Sí)
+  :Ingresar Datos de acceso a grado;
+  :Ingresar Datos RGPD;
+else (No)
+  :Ingresar Datos RGPD;
+endif
+:Ingresar Datos Académicos;
+if (¿Asignaturas de reconocimiento?) then (Sí)
+  :Página de reconocimientos;
+endif
+:Ingresar Datos Económicos;
+:Confirmación de datos;
+if (¿Usuario DECA?) then (Sí)
+  :Elegir pago doble o único;
+  :Realizar pago de matrícula;
+else (No)
+  :Realizar pago de matrícula;
+endif
+stop
+@enduml

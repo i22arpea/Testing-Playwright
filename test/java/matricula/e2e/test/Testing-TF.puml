@@ -1,0 +1,12 @@
+@startuml
+start
+:Iniciar sesión en la plataforma;
+:Iniciar proceso de TF;
+:Ingresar Datos TF;
+if (¿Tiene matrícula?) then (No)
+  :Realizar pago de matrícula;
+endif
+:Proceso de TF finalizado;
+
+stop
+@enduml

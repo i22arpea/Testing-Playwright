@@ -212,7 +212,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/NIMaster_Aceptacion")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -285,6 +285,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
                 String currenturl = loginPage.getPage().url();
                 log.debug("URL actual después de login: {}", currenturl);
 
+
                 //*Comprueba si la url a la que accede es la de proceso de admisión o la de home
                 if (currenturl.equals(props.getUrlProcesos()) || currenturl.equals(props.getUrlProcesosNo())) {
                     log.info("Accediendo a página de procesos");
@@ -319,7 +320,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
                     log.warn(e.getMessage());
                 }
 
-                homePage.getPage().waitForTimeout(3000);
+                homePage.getPage().waitForTimeout(6000);
 
                 //*Presiona el botón de matriculación
                 homePage.getBotonMatricularme().click();
@@ -327,7 +328,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
                 //*Espera a que aparezca el botón de la siguiente página
                 homePage.getPage().waitForSelector("//*[@id=\"btnGuardarPer\"]", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(60000));
 
-                //Crea una página de datos estadísticos
+                //Crea una página de datos personales
                 DatosPersonalesPage datosPersonalesPage = new DatosPersonalesPage(homePage, props);
 
                 page = datosPersonalesPage.getPage();
@@ -547,44 +548,8 @@ public class ProcesoInscripcionNuevoIngresoTest {
                     log.warn(e.getMessage());
                 }
 
-
-                //*Pulsa en el botón de condiciones No DECA
-                if(confirmacionDatosPage.getBotonCondicionesNoDECA().isVisible()) {
-                    confirmacionDatosPage.getBotonCondicionesNoDECA().click();
-
-                    //?Realiza el test de accesibilidad en la página de datos personales
-                    try {
-                        testAccessibility(page,"Condiciones_noDECA");
-                    } catch (Exception e) {
-                        log.warn(e.getMessage());
-                    }
-
-                    //*Pulsa en el botón de aceptar la clausulaNoDECA
-                    confirmacionDatosPage.getBotonAceptarClausulas().click();
-
-                    //*Presiona el botón de continuar de página
-                    confirmacionDatosPage.getBotonConfirmarDatos().click();
-
-                }else if(confirmacionDatosPage.getBotonCondicionesDECA().isVisible()){
-                    confirmacionDatosPage.getBotonCondicionesDECA().click();
-
-                    //?Realiza el test de accesibilidad en la página de datos personales
-                    try {
-                        testAccessibility(page,"Condiciones_DECA");
-                    } catch (Exception e) {
-                        log.warn(e.getMessage());
-                    }
-
-                    //*Presiona el botón de aceptar la clausulaDECA
-                    confirmacionDatosPage.getBotonAceptarCondicionesDECA().click();
-
-                    //*Presiona el botón de continuar de página
-                    confirmacionDatosPage.getBotonConfirmarDatos().click();
-
-                }else if(confirmacionDatosPage.getBotonCondicionesNI().isVisible()){
-
                     //*Pulsa en el botón de condiciones Nuevo Ingreso
-                    confirmacionDatosPage.getBotonCondicionesNI().click();
+                    confirmacionDatosPage.getBotonCondiciones().click();
 
                     //*Espera a que aparezca el botón de la siguiente página
                     confirmacionDatosPage.getPage().waitForTimeout(700);
@@ -600,27 +565,15 @@ public class ProcesoInscripcionNuevoIngresoTest {
                     }
 
                     //*Presiona el botón de aceptar la clausula
-                    confirmacionDatosPage.getBotonAceptarClausulasNI().click();
+                    confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
                     //*Presiona el botón de continuar de página
                     confirmacionDatosPage.getBotonGuardarContinuar().click();
 
-                }
+
 
                 //*Presiona el botón de confirmar
                 confirmacionDatosPage.getBotonConfirmar().click();
-/*
-                if(confirmacionDatosPage.getPanelConfirmacion().isVisible()) {
-                    confirmacionDatosPage.getBtnCerrar().click();
-
-                    //*Presiona el botón de continuar de página
-                    confirmacionDatosPage.getBotonGuardarContinuar().click();
-
-                    //*Presiona el botón de confirmar
-                    confirmacionDatosPage.getBotonConfirmar().click();
-                }
-                */
-
 
                 //*Presiona el botón de aceptar
                 confirmacionDatosPage.getBotonAceptar().click();
@@ -762,7 +715,6 @@ public class ProcesoInscripcionNuevoIngresoTest {
                 log.error("Error en test para usuario {}: {}", estudiante.getEmail(), e.getMessage(), e);
 
                 // Capturar screenshot de error
-                page.pause();
                 String uniqueErrorId = testName + "_" + System.currentTimeMillis();
                 String safeId = uniqueErrorId.replaceAll("[\\\\/:*?\"<>|]", "_");
                 String screenshotPath = "src/test/java/matricula/e2e/reports/screenshots/error_" + safeId + ".png";
@@ -995,7 +947,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
 
 
             // Antes de guardar el HTML en un archivo
-            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/";
+            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/NuevoIngreso/";
             Files.createDirectories(Path.of(outputDir)); // Crea la ruta si no existe
 
             // Guarda el HTML en un archivo
@@ -1006,7 +958,7 @@ public class ProcesoInscripcionNuevoIngresoTest {
             //Exportar resultados a excel
             new AccessibilityExcelExporter().exportViolationsToExcel(
                     "src/test/java/matricula/e2e/reports/violations.json",
-                    "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
+                    "src/test/java/matricula/e2e/reports/accesibilidad/NuevoIngreso/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
                     "src/test/java/matricula/e2e/reports/screenshots/" + nombrePagina + "_highlighted.png"
             );
 

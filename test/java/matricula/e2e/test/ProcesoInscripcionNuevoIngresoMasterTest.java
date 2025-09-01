@@ -514,35 +514,14 @@ public class ProcesoInscripcionNuevoIngresoMasterTest {
                 log.warn(e.getMessage());
             }
 
-            //*Pulsa en el botón de condiciones No DECA
-            if(confirmacionDatosPage.getBotonCondicionesNoDECA().isVisible()) {
-                confirmacionDatosPage.getBotonCondicionesNoDECA().click();
-
-                //?Realiza el test de accesibilidad en la página de datos personales
-                try {
-                   testAccessibility(page,"Condiciones_noDECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
-
-                //*Pulsa en el botón de aceptar la clausulaNoDECA
-                confirmacionDatosPage.getBotonAceptarClausulas().click();
-            }else if(confirmacionDatosPage.getBotonCondicionesDECA().isVisible()){
-                confirmacionDatosPage.getBotonCondicionesDECA().click();
-
-                //?Realiza el test de accesibilidad en la página de datos personales
-                try {
-                   testAccessibility(page,"Condiciones_DECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
-
-                //*Presiona el botón de aceptar la clausulaDECA
-                confirmacionDatosPage.getBotonAceptarCondicionesDECA().click();
-            }
+            //*Presiona el botón de condiciones
+            confirmacionDatosPage.getBotonCondiciones().click();
 
             //*Presiona el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonAceptarCondiciones().click();
+
+            //*Presiona el botón de continuar de página
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //*Presiona el botón de confirmar
             confirmacionDatosPage.getBotonConfirmar().click();
@@ -893,7 +872,7 @@ public class ProcesoInscripcionNuevoIngresoMasterTest {
 
 
             // Antes de guardar el HTML en un archivo
-            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/";
+            String outputDir = "src/test/java/matricula/e2e/reports/accesibilidad/NIMaster/";
             Files.createDirectories(Path.of(outputDir)); // Crea la ruta si no existe
 
             // Guarda el HTML en un archivo
@@ -904,7 +883,7 @@ public class ProcesoInscripcionNuevoIngresoMasterTest {
             //Exportar resultados a excel
             new AccessibilityExcelExporter().exportViolationsToExcel(
                     "src/test/java/matricula/e2e/reports/violations.json",
-                    "src/test/java/matricula/e2e/reports/accesibilidad/Renovacion/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
+                    "src/test/java/matricula/e2e/reports/accesibilidad/NIMaster/Excel/reporte_accesibilidad_" + nombrePagina + ".xlsx",
                     "src/test/java/matricula/e2e/reports/screenshots/" + nombrePagina + "_highlighted.png"
             );
 

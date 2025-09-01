@@ -223,7 +223,7 @@ public class ProcesoInscripcionOutgoingTest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/Outgoing_aceptacion")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -503,35 +503,14 @@ public class ProcesoInscripcionOutgoingTest {
                 log.warn(e.getMessage());
             }
 
-            //*Pulsa en el botón de condiciones No DECA
-            if (confirmacionDatosPage.getBotonCondicionesNoDECA().isVisible()) {
-                confirmacionDatosPage.getBotonCondicionesNoDECA().click();
+            //*Pulsa en el botón de condiciones Nuevo Ingreso
+            confirmacionDatosPage.getBotonCondiciones().click();
 
-                //?Realiza el test de accesibilidad en la página de datos personales
-                try {
-                    testAccessibility(page,"Condiciones_noDECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
-
-                //*Pulsa en el botón de aceptar la clausulaNoDECA
-                confirmacionDatosPage.getBotonAceptarClausulas().click();
-            } else if (confirmacionDatosPage.getBotonCondicionesDECA().isVisible()) {
-                confirmacionDatosPage.getBotonCondicionesDECA().click();
-
-                //?Realiza el test de accesibilidad en la página de datos personales
-                try {
-                    testAccessibility(page,"Condiciones_DECA");
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
-
-                //*Pulsa en el botón de aceptar la clausulaDECA
-                confirmacionDatosPage.getBotonAceptarCondicionesDECA().click();
-            }
+            //*Pulsa en el botón de aceptar la clausulaDECA
+            confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
             //*Presiona el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //*Presiona el botón de confirmar
             confirmacionDatosPage.getBotonConfirmar().click();

@@ -62,8 +62,8 @@ public class DatosConfirmacionPage {
         return page.locator("#btnCondicionesNoDECA");
     }
 
-    public Locator getBotonCondicionesNI() {
-        return page.locator("#btnCondicionesNI");
+    public Locator getBotonCondiciones() {
+        return page.locator("#btnCondiciones");
     }
 
 
@@ -97,8 +97,8 @@ public class DatosConfirmacionPage {
         return page.locator("#btnAceptarClausulas");
     }
 
-    public Locator getBotonAceptarClausulasNI() {
-        return page.locator("#btnAceptarCondicionesNI");
+    public Locator getBotonAceptarCondiciones() {
+        return page.locator("#btnAceptarCondiciones");
     }
 
     public List<Locator> getChecksClausulas() {

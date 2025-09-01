@@ -207,7 +207,7 @@ public class ProcesoInscripcionPiiaTest {
             Browser.NewContextOptions options = new Browser.NewContextOptions();
 
             if (props.isVideo()) {
-                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/")) // Carpeta de salida
+                options.setRecordVideoDir(Paths.get("src/test/java/matricula/e2e/reports/videos/Piia_aceptacion")) // Carpeta de salida
                         .setRecordVideoSize(1280, 720); // Tamaño del video
             }
 
@@ -499,16 +499,15 @@ public class ProcesoInscripcionPiiaTest {
             } else {
 
                 //*Presiona el botón ded condiciones No DECA
-                confirmacionDatosPage.getBotonCondicionesNoDECA().click();
+                confirmacionDatosPage.getBotonCondiciones().click();
 
                 //*Presiona el botón de aceptar la clausula
-                confirmacionDatosPage.getBotonAceptarClausulas().click();
+                confirmacionDatosPage.getBotonAceptarCondiciones().click();
 
             }
 
-
             //*Presiona el botón de continuar de página
-            confirmacionDatosPage.getBotonConfirmarDatos().click();
+            confirmacionDatosPage.getBotonGuardarContinuar().click();
 
             //*Presiona el botón de confirmar
             confirmacionDatosPage.getBotonConfirmar().click();
@@ -533,6 +532,8 @@ public class ProcesoInscripcionPiiaTest {
             } catch (Exception e) {
                 log.warn(e.getMessage());
             }
+
+            page.pause();
 
             //*Verifica si aparece la pantalla de formalizar matricula
             if (pagoMatriculaPage.getBotonFormalizarMatricula().isHidden() && !pagoMatriculaPage.getTextRevSecretaria().isVisible() || pagoMatriculaPage.getBotonFormalizarMatricula().isVisible()) {
