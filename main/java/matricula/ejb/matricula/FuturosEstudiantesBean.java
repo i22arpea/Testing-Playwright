@@ -33,9 +33,6 @@ public class FuturosEstudiantesBean {
     @Autowired
     private FuturosEstudiantesTFFacade futurosEstudiantesTFFacade;
 
-    @Autowired
-    private FuturosEstudiantesPiiaFacade futurosEstudiantesPiiaFacade;
-
 
     public List<FuturosEstudiantesAdmisiones> obtenerFuturosEstudiantesAdmisiones(int idProceso) {
 
@@ -65,12 +62,6 @@ public class FuturosEstudiantesBean {
     public List<FuturosEstudiantes> obtenerFuturosEstudiantesRenovacionColectivo(String tipoTitulacion, String curso, int solo_TF, int colectivo) {
 
         return futurosEstudiantesRenovacionFacade.getListaFuturosEstudiantesRenovacionColectivo(tipoTitulacion, curso, solo_TF, colectivo);
-
-    }
-
-    public List<FuturosEstudiantes> obtenerFuturosEstudiantesPiiaColectivo(String tipoTitulacion, String curso, int solo_TF, int colectivo) {
-
-        return futurosEstudiantesPiiaFacade.getListaFuturosEstudiantesPiiaColectivo(tipoTitulacion, curso, solo_TF, colectivo);
 
     }
 
