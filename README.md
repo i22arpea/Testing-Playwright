@@ -24,29 +24,77 @@ playwright.urlLoyolatpv =http://${playwright.servidor.ip}:${server.tpv.port}/Loy
 playwright.urlTfPago=http://${playwright.servidor.ip}:${server.port}/Matricula/secure/matricula/tfg/matricula_tf.xhtml
 
 # Numero de tests a ejecutar
-playwright.numero_alumnos=2
+playwright.numero_alumnos=1
+playwright.usuarios_en_paralelo=1
 
 # Configuración de navegador
 playwright.navegador=chromium
 playwright.headless=false
 playwright.slowmo=0
 playwright.video=false
+playwright.depuracion=false
+playwright.timeout=60000
+playwright.resetearUsuario=true
+
+# Datos de matriculación
+playwright.cursoAcad=2025/26
+playwright.proceso_matricula=5622
+playwright.proceso_admision=2743
+playwright.titulacion=1179
 
 # Servicios REST
-playwright.restUsuariosOutgoing =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=2024/25&tipoTitulacion=G&soloTF=0&colectivo=14
-playwright.restUsuariosOutgoingProximoCurso=http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesoutgoing/proximocurso?cursoAcad=2025/26
-playwright.restUsuariosDECA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion?cursoAcad=2024/25&tipoTitulacion=3&soloTF=0
-playwright.restUsuariosTFG =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfg?cursoAcad=2024/25&tipoTitulacion=G&soloTF=1
-playwright.restUsuariosTFGMod =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfgMod?cursoAcad=2024/25&tipoTitulacion=G&soloTF=1
-playwright.restUsuariosNuevoIngreso =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantescandidato?idProceso=2486
-playwright.restUsuariosTFM =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfm?cursoAcad=2024/25&tipoTitulacion=M&soloTF=1
-playwright.restUsuariosTFMMod =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfmMod?cursoAcad=2024/25&tipoTitulacion=M&soloTF=1
-playwright.restUsuariosPiia =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantespiia/colectivo?cursoAcad=2024/25&tipoTitulacion=F&soloTF=0&colectivo=40
-playwright.restUsuariosRenovacion =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=2024/25&tipoTitulacion=G&soloTF=0&colectivo=13
-playwright.restUsuariosRenovacionMA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/masasig?cursoAcad=2024/25&tipoTitulacion=G&soloTF=0&colectivo=13
-playwright.restUsuariosRenovacionAPA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/asigrestacept?asigSuperada=14778&cursoAcad=2024/25&asigMat=14787
-playwright.restUsuariosRenovacionAPE =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/asigresterror?asigSuperada=8937&cursoAcad=2024/25&asigMat=8945
-playwright.restUsuariosNuevoIngresoMaster =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=2024/25&tipoTitulacion=M&soloTF=0&colectivo=4
+
+# ===============================
+# = Outgoing
+
+playwright.restUsuariosOutgoing =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=G&soloTF=0&colectivo=14
+playwright.restUsuariosOutgoingProximoCurso=http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesoutgoing/proximocurso?cursoAcad=${playwright.cursoAcad}
+
+# ===============================
+# = DECA
+
+playwright.restUsuariosDECA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=3&soloTF=0
+
+# ===============================
+# = TFG
+
+playwright.restUsuariosTFG =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfg?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=G&soloTF=1
+playwright.restUsuariosTFGMod =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfgMod?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=G&soloTF=1
+
+# ===============================
+# = Nuevo Ingreso
+
+playwright.restUsuariosNuevoIngreso =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantescandidato?idProceso=${playwright.proceso_admision}
+playwright.restUsuariosNuevoIngresoMat =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantescandidato/Mat?idProceso=${playwright.proceso_matricula}
+playwright.restUsuariosNuevoIngresoTitulacion =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantescandidato/Titulacion?idProceso=${playwright.proceso_matricula}&titulacion=${playwright.titulacion}
+
+# ===============================
+# = TFM
+
+playwright.restUsuariosTFM =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfm?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=M&soloTF=1
+playwright.restUsuariosTFMMod =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesTF/tfmMod?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=M&soloTF=1
+
+# ===============================
+# = Piia
+
+playwright.restUsuariosPiia =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantespiia/colectivo?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=F&soloTF=0&colectivo=40
+
+# ===============================
+# = Renovacion
+
+playwright.restUsuariosRenovacion =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=G&soloTF=0&colectivo=13
+playwright.restUsuariosRenovacionMA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/masasig?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=G&soloTF=0&colectivo=13
+playwright.restUsuariosRenovacionAPA =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/asigrestacept?asigSuperada=14778&cursoAcad=${playwright.cursoAcad}&asigMat=14787
+playwright.restUsuariosRenovacionAPE =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/asigresterror?asigSuperada=8937&cursoAcad=${playwright.cursoAcad}&asigMat=8945
+
+
+# ===============================
+# = NI Master
+
+playwright.restUsuariosNuevoIngresoMaster =http://${playwright.servidor.ip}:${server.port}/Matricula/futurosestudiantesrenovacion/colectivo?cursoAcad=${playwright.cursoAcad}&tipoTitulacion=M&soloTF=0&colectivo=4
+
+# ===============================
+# = Reset
 
 playwright.eliminarFuturosEstudiantes =http://${playwright.servidor.ip}:${server.port}/Matricula/eliminarinsfuturosestudiantes?alumnoId=%d&idins=%d&cursoAcad=%s
 playwright.resetFuturosEstudiantes =http://${playwright.servidor.ip}:${server.port}/Matricula/resetfuturosestudiantes?alumnoId=%d&idins=%d&cursoAcad=%s
