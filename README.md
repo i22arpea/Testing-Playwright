@@ -35,6 +35,9 @@ playwright.video=false
 playwright.depuracion=false
 playwright.timeout=60000
 playwright.resetearUsuario=true
+playwright.dispositivo=escritorio
+# (tablet, movil_pequeno, movil_moderno, escritorio)
+
 
 # Datos de matriculación
 playwright.cursoAcad=2025/26
@@ -294,5 +297,6 @@ playwright.resetTF =http://${playwright.servidor.ip}:${server.port}/Matricula/re
 - [FuturosEstudiantesPiiaFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesPiiaFacade.java)
 - [FuturosEstudiantesRenovacionFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesRenovacionFacade.java)
 - [FuturosEstudiantesTFFacade.java](main/java/matricula/dao/mat/FuturosEstudiantesTFFacade.java)
+
 
 
